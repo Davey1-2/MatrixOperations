@@ -34,8 +34,8 @@ public class Matrix implements IMatrix {
             for (int i = 0; i < getRows(); i++) {
                 for (int j = 0; j < getColumns(); j++) {
                     endMatrix[i][j] = whatever;
-                    for (int a = 0; a < getColumns(); a++) {
-                        endMatrix[i][j] = endMatrix[i][j] + matrix.get(i,a) * matrix.get(a, j);
+                    for (int a = 0; a < 3; a++) {
+                        endMatrix[i][j] = endMatrix[i][j] + get(i,a) * matrix.get(a, j);
                     }
                 }
             }
@@ -62,8 +62,9 @@ public class Matrix implements IMatrix {
         double [][] endAdd = new double[getRows()][getColumns()];
         for (int i = 0; i < getRows(); i++) {
             for (int j = 0; j < getColumns(); j++) {
-                int a = (int) get(i, j);
-                int b = (int) matrix.get(i, j);
+                int MAT1 = (int) get(i, j);
+                int MAT2 = (int) matrix.get(i, j);
+                endAdd[i][j] = MAT1 + MAT2;
             }
 
         }
@@ -72,6 +73,7 @@ public class Matrix implements IMatrix {
 
     @Override
     public double get(int n, int m) {
+
         return rawArray[n][m];
     }
 
