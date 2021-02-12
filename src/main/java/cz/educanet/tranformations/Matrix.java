@@ -3,6 +3,7 @@ package cz.educanet.tranformations;
 import kotlin.NotImplementedError;
 
 import java.util.Arrays;
+import java.util.Scanner;
 
 public class Matrix implements IMatrix {
 
@@ -27,22 +28,51 @@ public class Matrix implements IMatrix {
 
     @Override
     public IMatrix times(IMatrix matrix) {
-        throw new NotImplementedError(); // TODO:
+        double [][] endMatrix = new double[getRows()][getColumns()];
+        int whatever = 0;
+        if (getColumns() == matrix.getColumns() && getRows() == matrix.getRows()){
+            for (int i = 0; i < getRows(); i++) {
+                for (int j = 0; j < getColumns(); j++) {
+                    endMatrix[i][j] = whatever;
+                    for (int a = 0; a < getColumns(); a++) {
+                        endMatrix[i][j] = endMatrix[i][j] + matrix.get(i,a) * matrix.get(a, j);
+                    }
+                }
+            }
+        }
+        return MatrixFactory.create(endMatrix);
     }
 
     @Override
     public IMatrix times(Number scalar) {
-        throw new NotImplementedError(); // TODO:
+        double [][] endScalar = new double[getRows()][getColumns()];
+        int bruh;
+        for (int i = 0; i < getRows(); i++) {
+            for (int j = 0; j < getColumns(); j++) {
+                bruh = (int) get(i, j);
+                endScalar[i][j] = bruh * scalar.intValue();
+            }
+
+        }
+        return MatrixFactory.create(endScalar);
     }
 
     @Override
     public IMatrix add(IMatrix matrix) {
-        throw new NotImplementedError(); // TODO:
+        double [][] endAdd = new double[getRows()][getColumns()];
+        for (int i = 0; i < getRows(); i++) {
+            for (int j = 0; j < getColumns(); j++) {
+                int a = (int) get(i, j);
+                int b = (int) matrix.get(i, j);
+            }
+
+        }
+        return MatrixFactory.create(endAdd);
     }
 
     @Override
     public double get(int n, int m) {
-        throw new NotImplementedError(); // TODO:
+        return rawArray[n][m];
     }
 
     //region Optional
